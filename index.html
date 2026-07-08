@@ -15,13 +15,85 @@
 --t:#4ade80;
 --panel:#0f172a;
 }
-
 body{
-margin:0;
-background:radial-gradient(circle at top,#020617,#000);
-font-family:'Sarabun',sans-serif;
-color:#e5e7eb;
-user-select:none;
+    margin:0;
+    min-height:100vh;
+
+   
+    font-family:'Sarabun',sans-serif;
+    color:#eef4ff;
+    user-select:none;
+    overflow-x:hidden;
+
+    background:
+
+        /* แสงม่วงด้านบน */
+        radial-gradient(circle at 50% 0%,
+            rgba(168,85,247,.22),
+            transparent 35%),
+
+        /* เขียวมรกตซ้าย */
+        radial-gradient(circle at 15% 20%,
+            rgba(16,185,129,.18),
+            transparent 38%),
+
+        /* ม่วงด้านขวา */
+        radial-gradient(circle at 85% 15%,
+            rgba(139,92,246,.18),
+            transparent 36%),
+
+        /* เขียวด้านล่าง */
+        radial-gradient(circle at 50% 100%,
+            rgba(34,197,94,.10),
+            transparent 42%),
+
+        /* แสงกลางจอ */
+        radial-gradient(circle at center,
+            rgba(255,255,255,.03),
+            transparent 65%),
+
+        /* พื้นหลังหลัก */
+        linear-gradient(
+            180deg,
+            #231942 0%,
+            #1c2440 25%,
+            #153338 55%,
+            #10252f 80%,
+            #0a1721 100%
+        );
+
+    background-attachment:fixed;
+}
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.025),
+            transparent 30%,
+            rgba(255,255,255,.015) 60%,
+            transparent
+        );
+
+    mix-blend-mode:screen;
+}
+/* ===========================
+   LOGIN PAGE
+=========================== */
+#loginPage{
+    width:100%;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+    box-sizing:border-box;
 }
 
 /* ===== BLINK ===== */
@@ -33,14 +105,21 @@ user-select:none;
 
 /* ===== LOGIN ===== */
 .login{
-max-width:380px;
-margin:120px auto;
-padding:30px;
-border-radius:24px;
-background:rgba(255,255,255,.08);
-backdrop-filter:blur(18px);
-box-shadow:0 0 80px rgba(56,189,248,.25);
+
+    width:100%;
+    max-width:380px;
+
+    padding:30px;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    box-sizing:border-box;
 }
+
 .login h3{
 font-family:'Orbitron',sans-serif;
 font-weight:800;
@@ -68,26 +147,115 @@ color:#000;
 }
 
 /* ===== MAIN ===== */
+/* ===== MAIN ===== */
 .app{
-max-width:540px;
-margin:20px auto;
-padding:24px;
-border-radius:30px;
-background:#020617;
-box-shadow:0 0 120px rgba(99,102,241,.25);
+    max-width:560px;
+    margin:20px auto;
+    padding:28px;
+    border-radius:32px;
+
+    position:relative;
+    overflow:hidden;
+
+    background:linear-gradient(
+        180deg,
+        rgba(36,43,72,.95) 0%,
+        rgba(24,34,54,.97) 45%,
+        rgba(14,22,36,.98) 100%
+    );
+
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    /* ขอบ */
+    border:1px solid rgba(255,255,255,.12);
+
+    /* ขอบด้านใน */
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        inset 0 -1px 0 rgba(0,0,0,.35),
+
+        /* เงาหลัก */
+        0 18px 45px rgba(0,0,0,.55),
+
+        /* Glow ม่วง */
+        0 0 20px rgba(168,85,247,.18),
+
+        /* Glow เขียว */
+        0 0 16px rgba(16,185,129,.12);
+
+
+    position:relative;
+    overflow:hidden;
 }
 
-.header{
-text-align:center;
-font-family:'Orbitron',sans-serif;
-font-weight:900;
-letter-spacing:2px;
+/* เอฟเฟกต์แสงบนพื้นผิว */
+.app::before{
+    content:"";
+    position:absolute;
+    inset:-1px;
+    border-radius:inherit;
+
+    border:1.5px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        0 0 12px rgba(168,85,247,.20),
+        0 0 8px rgba(16,185,129,.15);
+
+    pointer-events:none;
 }
+@keyframes borderGlow{
+    0%,100%{
+        filter:drop-shadow(0 0 6px rgba(168,85,247,.20))
+               drop-shadow(0 0 4px rgba(16,185,129,.15));
+    }
+    50%{
+        filter:drop-shadow(0 0 14px rgba(168,85,247,.35))
+               drop-shadow(0 0 10px rgba(16,185,129,.25));
+    }
+}
+
+.app{
+    animation:borderGlow 4s ease-in-out infinite;
+}
+/* ===== HEADER ===== */
+.header{
+    text-align:center;
+    font-family:'Orbitron',sans-serif;
+    font-size:15px;
+    font-weight:900;
+    letter-spacing:3px;
+    line-height:1.4;
+    margin-bottom:8px;
+
+    background:linear-gradient(
+        90deg,
+        #ffffff 0%,
+        #b8ecff 20%,
+        #6ee7ff 50%,
+        #38bdf8 80%,
+        #60a5fa 100%
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+
+    text-shadow:
+        0 0 12px rgba(56,189,248,.45);
+
+    user-select:none;
+}
+
+/* ===== SUB TITLE ===== */
 .sub{
-text-align:center;
-font-size:.85rem;
-color:#94a3b8;
-margin-bottom:10px;
+    text-align:center;
+    font-size:.9rem;
+    font-weight:500;
+    letter-spacing:1px;
+    color:#94a3b8;
+    margin-bottom:14px;
+    opacity:.9;
 }
 
 .expired{
@@ -107,20 +275,57 @@ margin-bottom:8px;
 
 /* ===== BIG BET ===== */
 .advice{
-margin:12px auto 16px;
-height:74px;
-border-radius:26px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-family:'Orbitron',sans-serif;
-font-size:42px;
-font-weight:900;
-letter-spacing:6px;
-border:2px solid #334155;
+    margin:18px auto;
+    height:88px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:28px;
+
+    font-family:'Orbitron',sans-serif;
+    font-size:54px;
+    font-weight:900;
+    letter-spacing:8px;
+
+    background:linear-gradient(
+        180deg,
+        rgba(255,255,255,.05),
+        rgba(255,255,255,.02)
+    );
+
+    border:2px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        inset 0 0 25px rgba(255,255,255,.03),
+        0 12px 30px rgba(0,0,0,.45);
+
+    transition:.3s;
 }
-.advice.p{color:var(--p);border-color:var(--p)}
-.advice.b{color:var(--b);border-color:var(--b)}
+.advice.p{
+
+color:#6ee7ff;
+
+border:2px solid #38bdf8;
+
+box-shadow:
+
+0 0 25px rgba(56,189,248,.7);
+
+}
+
+.advice.b{
+
+color:#ff8ba0;
+
+border:2px solid #fb7185;
+
+box-shadow:
+
+0 0 25px rgba(251,113,133,.7);
+
+}
 
 /* ===== STATS ===== */
 .stats{
@@ -138,15 +343,52 @@ font-weight:800;
 }
 
 /* ===== TABLE ===== */
-table{border-collapse:separate;border-spacing:6px;margin:auto}
-td{
-width:38px;height:38px;border-radius:12px;
-background:#020617;text-align:center;
-font-weight:900;font-size:16px;
-position:relative;
-box-shadow:inset 0 0 12px rgba(255,255,255,.08);
+table{
+    border-collapse:separate;
+    border-spacing:6px;
+    margin:auto;
 }
-td span{position:relative;z-index:2}
+
+td{
+    width:42px;
+    height:42px;
+    border-radius:14px;
+    position:relative;
+    text-align:center;
+    font-weight:900;
+    font-size:16px;
+
+    background:linear-gradient(
+        180deg,
+        #132033 0%,
+        #09111d 100%
+    );
+
+    border:1px solid rgba(255,255,255,.06);
+
+    box-shadow:
+        inset 0 0 10px rgba(255,255,255,.04),
+        0 4px 10px rgba(0,0,0,.45);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+td:hover{
+    transform:translateY(-2px) scale(1.05);
+    border-color:rgba(56,189,248,.35);
+    box-shadow:
+        inset 0 0 12px rgba(255,255,255,.06),
+        0 0 18px rgba(56,189,248,.22),
+        0 8px 20px rgba(0,0,0,.55);
+}
+
+td span{
+    position:relative;
+    z-index:2;
+}
 
 /* REAL */
 .p{color:var(--p);border:1px solid var(--p)}
@@ -172,22 +414,75 @@ font-size:22px;opacity:.35;pointer-events:none;
 .ok{color:#22c55e}
 .no{color:#ef4444}
 
-.btn{border-radius:18px;font-weight:900}
+.btn{
+
+border-radius:16px;
+
+font-weight:900;
+
+border:none;
+
+transition:.25s;
+
+box-shadow:
+
+0 8px 18px rgba(0,0,0,.45);
+
+}
+
+.btn:hover{
+
+transform:translateY(-2px);
+
+box-shadow:
+
+0 12px 30px rgba(56,189,248,.28);
+
+}
+@keyframes floatGlow{
+
+0%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-3px);
+}
+
+100%{
+transform:translateY(0);
+}
+
+}
+
+.advice{
+
+animation:floatGlow 3s ease-in-out infinite;
+
+}
 </style>
 </head>
 
 <body>
 
-<div id="login" class="login">
-<h3>AI ACCESS</h3>
-<input id="u" placeholder="USER">
-<input id="p" type="password" placeholder="PASSWORD">
-<button onclick="go()">LOGIN</button>
-<div id="m" class="text-danger text-center mt-2"></div>
-</div>
+    <!-- LOGIN PAGE -->
+    <div id="loginPage">
+
+        <div id="login" class="login">
+            <h3>AI ACCESS</h3>
+
+            <input id="u" placeholder="USER">
+            <input id="p" type="password" placeholder="PASSWORD">
+
+            <button onclick="go()">LOGIN</button>
+
+            <div id="m" class="text-danger text-center mt-2"></div>
+        </div>
+
+    </div>
 
 <div id="app" class="app d-none">
-<div class="header">AI QUANTUM PREDICTOR Monte Carlo Pattern Filter เงื่อนไขรัดกุม เน้นปลอดภัย หมุน 129,900 รอบ ผจก.Aggrassive ช่วยเลือกตัวแทง</div>
+<div class="header">AI QUANTUM PREDICTOR Monte Carlo Pattern Filter เงื่อนไขรัดกุม เน้นปลอดภัย หมุน 129,800 รอบ ผจก.Aggrassive ช่วยเลือกตัวแทง</div>
 <div class="sub">Expiry : 23 กรกฎาคม พ.ศ. 2569</div>
 <div id="expiredMsg" class="expired d-none">❌ โปรแกรมหมดอายุแล้ว</div>
 
@@ -263,18 +558,24 @@ let riskLevel  = 1;   // 1 = เต็มแรง
 
 function isExpired(){return new Date()>EXPIRY_DATE}
 function go(){
-if(isExpired()){m.innerText='PROGRAM EXPIRED';return;}
-if(u.value==='1234'&&p.value==='1234'){
-login.classList.add('d-none');
-app.classList.remove('d-none');
-}else m.innerText='ACCESS DENIED';
-}
 
-function lockIfExpired(){
-if(isExpired()){
-expiredMsg.classList.remove('d-none');
-document.querySelectorAll('.action').forEach(b=>b.disabled=true);
-}
+    if(isExpired()){
+        m.innerText='PROGRAM EXPIRED';
+        return;
+    }
+
+    if(u.value==='1234'&&p.value==='1234'){
+
+        document.getElementById("loginPage").classList.add("d-none");
+
+        app.classList.remove("d-none");
+
+    }else{
+
+        m.innerText='ACCESS DENIED';
+
+    }
+
 }
 
 function add(v){
@@ -383,7 +684,7 @@ async function ai(){
 
   let targetIndex = h.length;
 
-  const TOTAL = 129900;
+  const TOTAL = 129800;
   const CHUNK = 300;
 
 
@@ -607,11 +908,23 @@ ct.innerText=ti;
 ca.innerText=h.length;
 }
 
+function lockIfExpired(){
 
+    if(isExpired()){
+
+        expiredMsg.classList.remove("d-none");
+
+        document.querySelectorAll(".action")
+            .forEach(b=>b.disabled=true);
+
+    }
+
+}
 draw();
 lockIfExpired();
 
 </script>
-
+</div>
+    <!-- END APP -->
 </body>
 </html>
